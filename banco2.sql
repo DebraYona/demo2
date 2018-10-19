@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `banco2` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `banco2`;
 -- MySQL dump 10.13  Distrib 5.7.23, for Linux (x86_64)
 --
 -- Host: localhost    Database: banco2
@@ -52,11 +54,7 @@ CREATE TABLE `cuenta` (
   `monto` double DEFAULT NULL,
   `idusuario` int(11) NOT NULL,
   `idbancos` int(11) NOT NULL,
-  PRIMARY KEY (`idcuenta`,`idusuario`,`idbancos`),
-  KEY `fk_cuenta_usuario1_idx` (`idusuario`),
-  KEY `fk_cuenta_banco1_idx` (`idbancos`),
-  CONSTRAINT `fk_cuenta_banco1` FOREIGN KEY (`idbancos`) REFERENCES `banco` (`idbancos`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_cuenta_usuario1` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  PRIMARY KEY (`idcuenta`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -66,7 +64,7 @@ CREATE TABLE `cuenta` (
 
 LOCK TABLES `cuenta` WRITE;
 /*!40000 ALTER TABLE `cuenta` DISABLE KEYS */;
-INSERT INTO `cuenta` VALUES (1,'123109546234',4645,1,1),(2,'2342364565434',4253,2,1);
+INSERT INTO `cuenta` VALUES (1,'123109546234',4245,1,1),(2,'2342364565434',4653,2,1);
 /*!40000 ALTER TABLE `cuenta` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -85,12 +83,8 @@ CREATE TABLE `transaccion` (
   `tipo` int(11) DEFAULT NULL,
   `cuenta_remitente` int(11) NOT NULL,
   `cuenta_receptor` int(11) NOT NULL,
-  PRIMARY KEY (`idtransaccion`,`cuenta_remitente`,`cuenta_receptor`),
-  KEY `fk_transaccion_cuenta1_idx` (`cuenta_remitente`),
-  KEY `fk_transaccion_cuenta2_idx` (`cuenta_receptor`),
-  CONSTRAINT `fk_transaccion_cuenta1` FOREIGN KEY (`cuenta_remitente`) REFERENCES `cuenta` (`idcuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_transaccion_cuenta2` FOREIGN KEY (`cuenta_receptor`) REFERENCES `cuenta` (`idcuenta`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`idtransaccion`)
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -99,7 +93,7 @@ CREATE TABLE `transaccion` (
 
 LOCK TABLES `transaccion` WRITE;
 /*!40000 ALTER TABLE `transaccion` DISABLE KEYS */;
-INSERT INTO `transaccion` VALUES (1,300,'2018-10-12 14:26:48','deposito',1,1,2),(2,300,'2018-10-12 14:27:43','deposito',1,1,2),(3,300,'2018-10-12 14:28:18','deposito',1,1,2),(18,1000,'2018-10-12 16:01:47','deposito',1,2,1),(19,1000,'2018-10-12 16:02:54','deposito',1,2,1),(20,1000,'2018-10-12 16:03:24','deposito',1,2,1),(23,1000,'2018-10-12 16:24:00','deposito',1,2,1),(24,400,'2018-10-12 16:27:27','\'deposito\'',1,1,2),(25,400,'2018-10-12 16:27:58','\'deposito\'',1,1,2);
+INSERT INTO `transaccion` VALUES (1,300,'2018-10-12 14:26:48','deposito',1,1,2),(2,300,'2018-10-12 14:27:43','deposito',1,1,2),(3,300,'2018-10-12 14:28:18','deposito',1,1,2),(18,1000,'2018-10-12 16:01:47','deposito',1,2,1),(19,1000,'2018-10-12 16:02:54','deposito',1,2,1),(20,1000,'2018-10-12 16:03:24','deposito',1,2,1),(23,1000,'2018-10-12 16:24:00','deposito',1,2,1),(24,400,'2018-10-12 16:27:27','\'deposito\'',1,1,2),(25,400,'2018-10-12 16:27:58','\'deposito\'',1,1,2),(26,400,'2018-10-13 02:42:40','\'deposito\'',1,1,2);
 /*!40000 ALTER TABLE `transaccion` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -208,4 +202,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-12 18:55:59
+-- Dump completed on 2018-10-17 23:33:10
